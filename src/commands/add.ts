@@ -130,20 +130,7 @@ export async function add(componentName: string, options: { yes?: boolean }) {
       // CSS files will be converted to SCSS in the style file extension section below
     }
 
-    // Create directory if needed
-    const targetDirPath = dirname(targetPath);
-    if (!existsSync(targetDirPath)) {
-      mkdirSync(targetDirPath, { recursive: true });
-    }
-
-    let content = readFileSync(sourcePath, 'utf-8');
-
-    // Transform component based on config
-    if (file.endsWith('.tsx') || file.endsWith('.ts') || file.endsWith('.jsx') || file.endsWith('.js')) {
-      content = transformComponent(content, config, componentName);
-    }
-
-    // Handle style file extensions
+    // Handle style file extensions FIRST (before reading content for other files)
     if (file.endsWith('.css') || file.endsWith('.scss')) {
       const ext = config.style === 'scss' ? '.scss' : '.css';
       let finalPath = targetPath;
@@ -156,14 +143,36 @@ export async function add(componentName: string, options: { yes?: boolean }) {
         finalFileName = file.replace('.css', '.scss');
         converted = true;
       } else if (!targetPath.endsWith(ext)) {
-        // For CSS mode, ensure .css extension
+        // For CSS mode, ensure .css extension (convert SCSS to CSS)
         finalPath = targetPath.replace(/\.(css|scss)$/, ext);
         finalFileName = file.replace(/\.(css|scss)$/, ext);
       }
       
-      writeFileSync(finalPath, content, 'utf-8');
+      // Ensure directory exists
+      const finalDirPath = dirname(finalPath);
+      if (!existsSync(finalDirPath)) {
+        mkdirSync(finalDirPath, { recursive: true });
+      }
+      
+      // Read CSS/SCSS content
+      const styleContent = readFileSync(sourcePath, 'utf-8');
+      
+      writeFileSync(finalPath, styleContent, 'utf-8');
       logger.success(`  ✓ ${finalFileName}${converted ? ' (converted)' : ''}`);
       continue;
+    }
+
+    // Create directory if needed
+    const targetDirPath = dirname(targetPath);
+    if (!existsSync(targetDirPath)) {
+      mkdirSync(targetDirPath, { recursive: true });
+    }
+
+    let content = readFileSync(sourcePath, 'utf-8');
+
+    // Transform component based on config
+    if (file.endsWith('.tsx') || file.endsWith('.ts') || file.endsWith('.jsx') || file.endsWith('.js')) {
+      content = transformComponent(content, config, componentName);
     }
 
     writeFileSync(targetPath, content, 'utf-8');
@@ -252,4 +261,7 @@ export function cn(...inputs: ClassValue[]) {
   }
 
   logger.success(`\n✓ Component ${chalk.cyan(componentName)} added successfully!`);
+  
+  // Ensure process exits cleanly
+  process.exit(0);
 }
