@@ -71,20 +71,31 @@ export function injectTailwindVariables(cssFilePath: string): boolean {
     return false; // Already has variables
   }
 
-  // Inject variables after @tailwind directives or at the beginning
-  const tailwindDirectives = /@tailwind\s+(base|components|utilities);?\s*\n/g;
-  const hasTailwind = tailwindDirectives.test(content);
+  // Check for Tailwind v4 syntax (@import "tailwindcss")
+  const tailwindV4Import = /@import\s+["']tailwindcss["'];?\s*\n/g;
+  const hasTailwindV4 = tailwindV4Import.test(content);
+  
+  // Check for Tailwind v3 syntax (@tailwind directives)
+  const tailwindV3Directives = /@tailwind\s+(base|components|utilities);?\s*\n/g;
+  const hasTailwindV3 = tailwindV3Directives.test(content);
   
   let newContent = content;
   
-  if (hasTailwind) {
-    // Insert after @tailwind base
+  if (hasTailwindV4) {
+    // Tailwind v4: Insert after @import "tailwindcss"
+    newContent = content.replace(
+      /(@import\s+["']tailwindcss["'];?\s*\n)/,
+      `$1${TAILWIND_CSS_VARIABLES}\n`
+    );
+  } else if (hasTailwindV3) {
+    // Tailwind v3: Insert after @tailwind base
     newContent = content.replace(
       /(@tailwind\s+base;?\s*\n)/,
       `$1${TAILWIND_CSS_VARIABLES}\n`
     );
   } else {
-    // Add at the beginning
+    // No Tailwind detected, add at the beginning
+    // For v4, we should add @import first, but we'll let the user add it manually
     newContent = `${TAILWIND_CSS_VARIABLES}\n\n${content}`;
   }
 

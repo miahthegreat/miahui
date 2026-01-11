@@ -208,7 +208,9 @@ export function cn(...inputs: ClassValue[]) {
       logger.success(`  ✓ Added CSS variables to ${config.tailwind.css}`);
     } else {
       logger.info(`\n${chalk.yellow('Note:')} Make sure Tailwind CSS is configured in your project.`);
-      logger.info(`CSS variables may need to be added to your ${chalk.cyan(config.tailwind.css)} file.`);
+      logger.info(`For Tailwind v4, use ${chalk.cyan('@import "tailwindcss"')} in your CSS file.`);
+      logger.info(`For Tailwind v3, use ${chalk.cyan('@tailwind base')} directives.`);
+      logger.info(`CSS variables may need to be added manually to your ${chalk.cyan(config.tailwind.css)} file.`);
     }
   } else if (config.css) {
     // Import CSS/SCSS files

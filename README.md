@@ -80,12 +80,16 @@ After initialization, you'll have a `components.json` file:
 ## Styling Options
 
 ### Tailwind CSS (Default)
-Components use Tailwind utility classes with CSS variables for theming.
+Components use Tailwind utility classes with CSS variables for theming. Supports both Tailwind CSS v3 and v4.
 
 **Required dependencies:**
 ```bash
 npm install clsx tailwind-merge
 ```
+
+**For Tailwind CSS v4:**
+- Use `@import "tailwindcss"` in your main CSS file instead of `@tailwind` directives
+- Miahui will automatically detect and inject CSS variables for both v3 and v4 syntax
 
 ### Vanilla CSS
 Components come with standalone CSS files that can be imported directly.
