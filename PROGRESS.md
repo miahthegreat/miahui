@@ -45,7 +45,7 @@
 
 ### Current Component Library
 
-**Total Components: 12**
+**Total Components: 15**
 
 - ✅ Button
 - ✅ Card
@@ -59,6 +59,9 @@
 - ✅ Alert
 - ✅ Switch
 - ✅ Checkbox
+- ✅ Tooltip
+- ✅ Accordion
+- ✅ Popover
 
 ### Next Steps (Potential)
 
@@ -103,10 +106,11 @@
 
 ## Statistics
 
-- **Components**: 12
+- **Components**: 15
 - **Styling Modes**: 3 (Tailwind, CSS, SCSS)
 - **CLI Commands**: 4 (init, add, update, list)
-- **Lines of Code**: ~5000+
+- **Lines of Code**: ~7000+
 - **Documentation Files**: 6
 - **Build Time**: ~17ms
+- **Animations**: Fade-in, slide, accordion, tooltip animations
 

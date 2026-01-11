@@ -56,7 +56,8 @@ export const TAILWIND_CSS_VARIABLES = `
 }
 `;
 
-import { existsSync, readFileSync, writeFileSync } from 'fs-extra';
+import fs from "fs-extra";
+const { existsSync, readFileSync, writeFileSync } = fs;
 
 export function injectTailwindVariables(cssFilePath: string): boolean {
   if (!existsSync(cssFilePath)) {

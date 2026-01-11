@@ -1,4 +1,5 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs-extra';
+import fs from "fs-extra";
+const { existsSync, readFileSync, writeFileSync } = fs;
 import { join } from 'path';
 import { logger } from '../utils/logger.js';
 import { getConfig } from '../utils/config.js';

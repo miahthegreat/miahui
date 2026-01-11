@@ -1,4 +1,5 @@
-import { existsSync } from 'fs-extra';
+import fs from "fs-extra";
+const { existsSync } = fs;
 import { join } from 'path';
 import { MiahuiConfig } from '../types/config.js';
 import { logger } from './logger.js';
