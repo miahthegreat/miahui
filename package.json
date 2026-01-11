@@ -19,7 +19,15 @@
     "scss",
     "design-system"
   ],
-  "author": "",
+  "author": "miahthegreat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miahthegreat/miahui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miahthegreat/miahui/issues"
+  },
+  "homepage": "https://github.com/miahthegreat/miahui#readme",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",

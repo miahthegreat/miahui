@@ -1,0 +1,49 @@
+# Source code files (exclude, but keep templates!)
+src/cli.ts
+src/commands/
+src/types/
+src/utils/
+tsconfig.json
+tsup.config.ts
+
+# Test files
+test-cli.js
+miahui-test/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Development files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Documentation (keep README, LICENSE)
+TESTING.md
+TEST_STATUS.md
+TEST_RESULTS.md
+PUBLISHING.md
+CONTRIBUTING.md
+EXAMPLES.md
+FEATURES.md
+PROGRESS.md
+QUICKSTART.md
+USAGE.md
+CHANGELOG.md
+
+# CI/CD
+.github/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
