@@ -1,6 +1,6 @@
 {
   "name": "miahui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A highly customizable UI component library with CSS/SCSS and Tailwind support",
   "bin": {
     "miahui": "dist/cli.mjs"
