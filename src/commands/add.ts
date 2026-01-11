@@ -8,6 +8,7 @@ import { transformComponent } from '../utils/transform.js';
 import { validateConfig } from '../utils/validation.js';
 import { glob } from 'glob';
 import chalk from 'chalk';
+import { tryInjectComponentImport } from '../utils/css-imports.js';
 
 export async function add(componentName: string, options: { yes?: boolean }) {
   const cwd = process.cwd();
@@ -104,15 +105,8 @@ export async function add(componentName: string, options: { yes?: boolean }) {
         continue;
       }
     } else if (config.style === 'scss') {
-      // Convert CSS to SCSS if needed
-      if (file.endsWith('.css') && !file.endsWith('.scss')) {
-        const scssPath = targetPath.replace('.css', '.scss');
-        let content = readFileSync(sourcePath, 'utf-8');
-        writeFileSync(scssPath, content, 'utf-8');
-        logger.success(`  ✓ ${file.replace('.css', '.scss')} (converted)`);
-        continue;
-      }
-      // Use CSS version if available for SCSS mode
+      // Skip CSS files here - they'll be converted in the style file extension section
+      // But we need to handle -css.tsx files first
       if (file.includes('-css.')) {
         const newFile = file.replace('-css.', '.').replace(/\.(tsx|ts|jsx|js)$/, '.$1');
         const newTargetPath = join(componentTargetDir, newFile);
@@ -133,6 +127,7 @@ export async function add(componentName: string, options: { yes?: boolean }) {
       if (files.includes(cssVersion)) {
         continue;
       }
+      // CSS files will be converted to SCSS in the style file extension section below
     }
 
     // Create directory if needed
@@ -151,12 +146,24 @@ export async function add(componentName: string, options: { yes?: boolean }) {
     // Handle style file extensions
     if (file.endsWith('.css') || file.endsWith('.scss')) {
       const ext = config.style === 'scss' ? '.scss' : '.css';
-      if (!targetPath.endsWith(ext)) {
-        const newPath = targetPath.replace(/\.(css|scss)$/, ext);
-        writeFileSync(newPath, content, 'utf-8');
-        logger.success(`  ✓ ${file.replace(/\.(css|scss)$/, ext)}`);
-        continue;
+      let finalPath = targetPath;
+      let finalFileName = file;
+      let converted = false;
+      
+      // For SCSS mode, convert CSS to SCSS
+      if (config.style === 'scss' && file.endsWith('.css') && !file.endsWith('.scss')) {
+        finalPath = targetPath.replace('.css', '.scss');
+        finalFileName = file.replace('.css', '.scss');
+        converted = true;
+      } else if (!targetPath.endsWith(ext)) {
+        // For CSS mode, ensure .css extension
+        finalPath = targetPath.replace(/\.(css|scss)$/, ext);
+        finalFileName = file.replace(/\.(css|scss)$/, ext);
       }
+      
+      writeFileSync(finalPath, content, 'utf-8');
+      logger.success(`  ✓ ${finalFileName}${converted ? ' (converted)' : ''}`);
+      continue;
     }
 
     writeFileSync(targetPath, content, 'utf-8');
@@ -213,11 +220,35 @@ export function cn(...inputs: ClassValue[]) {
       logger.info(`CSS variables may need to be added manually to your ${chalk.cyan(config.tailwind.css)} file.`);
     }
   } else if (config.css) {
-    // Import CSS/SCSS files
+    // Try to automatically inject CSS/SCSS import into global stylesheet
     const styleExt = config.css.scss ? 'scss' : 'css';
-    logger.info(`\n${chalk.yellow('Note:')} Don't forget to import the styles:`);
-    logger.info(`  ${chalk.gray(`import './${componentName}/${componentName}.${styleExt}'`)}`);
-    logger.info(`Or add to your global stylesheet.`);
+    
+    // Calculate component path relative to project root
+    const componentsResolvedPath = resolvePath(config.aliases.components, cwd);
+    const componentPathFromRoot = componentsResolvedPath
+      .replace(cwd + '/', '')
+      .replace(cwd + '\\', '')
+      .replace(/\\/g, '/') + `/${componentName}/${componentName}.${styleExt}`;
+    
+    const result = tryInjectComponentImport(
+      componentName,
+      componentPathFromRoot,
+      styleExt,
+      cwd
+    );
+    
+    if (result.success && result.stylesheet) {
+      logger.success(`  ✓ Added import to ${result.stylesheet}`);
+    } else {
+      logger.info(`\n${chalk.yellow('Note:')} Don't forget to import the styles:`);
+      if (result.stylesheet) {
+        logger.info(`  Add to ${chalk.cyan(result.stylesheet)}:`);
+        logger.info(`  ${chalk.gray(`@import "${relativeComponentPath}";`)}`);
+      } else {
+        logger.info(`  ${chalk.gray(`import './${componentName}/${componentName}.${styleExt}'`)}`);
+        logger.info(`Or add to your global stylesheet (globals.css, App.css, index.css, etc.).`);
+      }
+    }
   }
 
   logger.success(`\n✓ Component ${chalk.cyan(componentName)} added successfully!`);
