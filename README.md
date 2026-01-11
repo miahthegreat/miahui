@@ -109,6 +109,9 @@ Requires a SCSS compiler (usually included in build tools like Vite, Next.js, et
 - **Alert** - Alert/notification component
 - **Switch** - Toggle switch component
 - **Checkbox** - Checkbox input component
+- **Tooltip** - Tooltip component with positioning
+- **Accordion** - Collapsible content sections
+- **Popover** - Floating popover panel
 
 Run `miahui list` to see all available components, or `miahui list --search <term>` to search.
 
