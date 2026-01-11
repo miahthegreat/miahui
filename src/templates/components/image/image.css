@@ -1,0 +1,28 @@
+.miahui-image {
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+.miahui-image--fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.miahui-image--contain {
+  object-fit: contain;
+}
+
+.miahui-image--cover {
+  object-fit: cover;
+}
+
+.miahui-image--none {
+  object-fit: none;
+}
+
+.miahui-image--scale-down {
+  object-fit: scale-down;
+}
+

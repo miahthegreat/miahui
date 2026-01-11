@@ -104,18 +104,29 @@ Requires a SCSS compiler (usually included in build tools like Vite, Next.js, et
 - **Button** - Versatile button with multiple variants and sizes
 - **Card** - Container component with header, content, and footer
 - **Input** - Styled input component with focus states
+- **Textarea** - Multi-line text input component
+- **Select** - Styled select dropdown component
 - **Dialog** - Modal dialog component
 - **Label** - Form label component
 - **Badge** - Small status indicator component
 - **Tabs** - Tabbed interface component
 - **Separator** - Visual separator component
 - **Avatar** - User profile picture component with fallback
+- **Image** - Optimized image component with Next.js support
 - **Alert** - Alert/notification component
 - **Switch** - Toggle switch component
 - **Checkbox** - Checkbox input component
 - **Tooltip** - Tooltip component with positioning
 - **Accordion** - Collapsible content sections
 - **Popover** - Floating popover panel
+- **Progress** - Progress bar component
+- **Skeleton** - Loading skeleton component
+- **Dropdown Menu** - Dropdown menu with items and separators
+- **Radio Group** - Radio button group component
+- **Slider** - Range slider component
+- **Toast** - Toast notification component
+- **Breadcrumb** - Breadcrumb navigation component
+- **Sheet** - Slide-over panel/drawer component
 
 Run `miahui list` to see all available components, or `miahui list --search <term>` to search.
 

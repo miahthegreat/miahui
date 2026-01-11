@@ -1,0 +1,69 @@
+.miahui-toast {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid hsl(var(--border));
+  padding: 1.5rem;
+  padding-right: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.miahui-toast--default {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.miahui-toast--destructive {
+  border-color: hsl(var(--destructive));
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+
+.miahui-toast--success {
+  border-color: rgb(34, 197, 94);
+  background-color: rgb(240, 253, 244);
+  color: rgb(20, 83, 45);
+}
+
+.miahui-toast__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.miahui-toast__description {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.miahui-toast__close {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.25rem;
+  color: hsl(var(--foreground));
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.miahui-toast:hover .miahui-toast__close,
+.miahui-toast__close:focus {
+  opacity: 1;
+}
+
+.miahui-toast__close:hover {
+  color: hsl(var(--foreground));
+}
+
