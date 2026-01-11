@@ -1,0 +1,15 @@
+.miahui-separator {
+  flex-shrink: 0;
+  background-color: var(--miahui-border);
+}
+
+.miahui-separator--horizontal {
+  height: 1px;
+  width: 100%;
+}
+
+.miahui-separator--vertical {
+  height: 100%;
+  width: 1px;
+}
+

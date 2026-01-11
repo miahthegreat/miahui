@@ -1,0 +1,55 @@
+.miahui-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+.miahui-switch-track {
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  background-color: var(--miahui-muted);
+  border-radius: 9999px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .miahui-switch input:focus-visible + & {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--miahui-ring), 0 0 0 4px var(--miahui-ring-offset);
+  }
+
+  .miahui-switch input:checked + & {
+    background-color: var(--miahui-primary);
+  }
+}
+
+.miahui-switch-thumb {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background-color: white;
+  border: 1px solid var(--miahui-border);
+  border-radius: 9999px;
+  height: 1.25rem;
+  width: 1.25rem;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .miahui-switch input:checked + .miahui-switch-track & {
+    transform: translateX(1.375rem);
+    border-color: white;
+  }
+}
+

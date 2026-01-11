@@ -1,0 +1,39 @@
+.miahui-card {
+  border-radius: 0.5rem;
+  border: 1px solid var(--miahui-border);
+  background-color: var(--miahui-card);
+  color: var(--miahui-card-foreground);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.miahui-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1.5rem;
+}
+
+.miahui-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.miahui-card-description {
+  font-size: 0.875rem;
+  color: var(--miahui-muted-foreground);
+}
+
+.miahui-card-content {
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.miahui-card-footer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  padding-top: 0;
+}
+

@@ -1,0 +1,53 @@
+:root {
+  --miahui-background: 0 0% 100%;
+  --miahui-foreground: 222.2 84% 4.9%;
+  --miahui-card: 0 0% 100%;
+  --miahui-card-foreground: 222.2 84% 4.9%;
+  --miahui-popover: 0 0% 100%;
+  --miahui-popover-foreground: 222.2 84% 4.9%;
+  --miahui-primary: 222.2 47.4% 11.2%;
+  --miahui-primary-foreground: 210 40% 98%;
+  --miahui-primary-hover: 222.2 47.4% 15%;
+  --miahui-secondary: 210 40% 96.1%;
+  --miahui-secondary-foreground: 222.2 47.4% 11.2%;
+  --miahui-secondary-hover: 210 40% 90%;
+  --miahui-muted: 210 40% 96.1%;
+  --miahui-muted-foreground: 215.4 16.3% 46.9%;
+  --miahui-accent: 210 40% 96.1%;
+  --miahui-accent-foreground: 222.2 47.4% 11.2%;
+  --miahui-destructive: 0 84.2% 60.2%;
+  --miahui-destructive-foreground: 210 40% 98%;
+  --miahui-destructive-hover: 0 84.2% 50%;
+  --miahui-border: 214.3 31.8% 91.4%;
+  --miahui-input: 214.3 31.8% 91.4%;
+  --miahui-ring: 222.2 84% 4.9%;
+  --miahui-ring-offset: 0 0% 100%;
+  --miahui-radius: 0.5rem;
+}
+
+.dark {
+  --miahui-background: 222.2 84% 4.9%;
+  --miahui-foreground: 210 40% 98%;
+  --miahui-card: 222.2 84% 4.9%;
+  --miahui-card-foreground: 210 40% 98%;
+  --miahui-popover: 222.2 84% 4.9%;
+  --miahui-popover-foreground: 210 40% 98%;
+  --miahui-primary: 210 40% 98%;
+  --miahui-primary-foreground: 222.2 47.4% 11.2%;
+  --miahui-primary-hover: 210 40% 90%;
+  --miahui-secondary: 217.2 32.6% 17.5%;
+  --miahui-secondary-foreground: 210 40% 98%;
+  --miahui-secondary-hover: 217.2 32.6% 25%;
+  --miahui-muted: 217.2 32.6% 17.5%;
+  --miahui-muted-foreground: 215 20.2% 65.1%;
+  --miahui-accent: 217.2 32.6% 17.5%;
+  --miahui-accent-foreground: 210 40% 98%;
+  --miahui-destructive: 0 62.8% 30.6%;
+  --miahui-destructive-foreground: 210 40% 98%;
+  --miahui-destructive-hover: 0 62.8% 40%;
+  --miahui-border: 217.2 32.6% 17.5%;
+  --miahui-input: 217.2 32.6% 17.5%;
+  --miahui-ring: 212.7 26.8% 83.9%;
+  --miahui-ring-offset: 222.2 84% 4.9%;
+}
+

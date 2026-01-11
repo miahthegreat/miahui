@@ -1,0 +1,54 @@
+.miahui-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.miahui-badge:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--miahui-ring), 0 0 0 4px var(--miahui-ring-offset);
+}
+
+.miahui-badge--default {
+  border-color: transparent;
+  background-color: var(--miahui-primary);
+  color: var(--miahui-primary-foreground);
+}
+
+.miahui-badge--default:hover {
+  background-color: var(--miahui-primary-hover);
+}
+
+.miahui-badge--secondary {
+  border-color: transparent;
+  background-color: var(--miahui-secondary);
+  color: var(--miahui-secondary-foreground);
+}
+
+.miahui-badge--secondary:hover {
+  background-color: var(--miahui-secondary-hover);
+}
+
+.miahui-badge--destructive {
+  border-color: transparent;
+  background-color: var(--miahui-destructive);
+  color: var(--miahui-destructive-foreground);
+}
+
+.miahui-badge--destructive:hover {
+  background-color: var(--miahui-destructive-hover);
+}
+
+.miahui-badge--outline {
+  color: var(--miahui-foreground);
+  border-color: var(--miahui-border);
+}
+

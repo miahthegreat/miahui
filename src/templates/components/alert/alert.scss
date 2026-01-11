@@ -1,0 +1,57 @@
+.miahui-alert {
+  position: relative;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--miahui-border);
+  padding: 1rem;
+
+  &[role="alert"] {
+    // Alert specific styles
+  }
+
+  svg {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--miahui-foreground);
+  }
+
+  > svg ~ * {
+    padding-left: 1.75rem;
+  }
+
+  > svg + div {
+    transform: translateY(-3px);
+  }
+}
+
+.miahui-alert-title {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.miahui-alert-description {
+  font-size: 0.875rem;
+
+  p {
+    line-height: 1.625;
+  }
+}
+
+// Variants
+.miahui-alert--default {
+  background-color: var(--miahui-background);
+  color: var(--miahui-foreground);
+}
+
+.miahui-alert--destructive {
+  border-color: var(--miahui-destructive);
+  color: var(--miahui-destructive);
+
+  svg {
+    color: var(--miahui-destructive);
+  }
+}
+
